@@ -1,0 +1,192 @@
+{"results":[
+  {
+    "dataOraUTC": "2016-10-27T12:59:50.050000",
+    "lat": 42.9023,
+    "long": 13.0117,
+    "profonditaKm": 10.7,
+    "magnitudo": 2.2,
+    "radius": 22000,
+    "risk": 0.0847,
+    "city": "Preci"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:00:27.910000",
+    "lat": 43.0262,
+    "long": 13.109,
+    "profonditaKm": 10.1,
+    "magnitudo": 2.5,
+    "radius": 25000,
+    "risk": 0.0894,
+    "city": "Pieve Torina"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:04:12.040000",
+    "lat": 42.8973,
+    "long": 13.0465,
+    "profonditaKm": 10.6,
+    "magnitudo": 5,
+    "radius": 21000,
+    "risk": 0.0847,
+    "city": "Preci"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:03:23.830000",
+    "lat": 42.8877,
+    "long": 13.1522,
+    "profonditaKm": 8.2,
+    "magnitudo": 2,
+    "radius": 20000,
+    "risk": 0.2672,
+    "city": "Frazione Nocelleto"
+  },
+  {
+    "dataOraUTC": "2016-10-22T21:28:39.130000",
+    "lat": 44.6183,
+    "long": 6.8198,
+    "profonditaKm": 7.8,
+    "magnitudo": 2,
+    "radius": 20000,
+    "risk": 0.2461,
+    "city": "Ceillac"
+  },
+  {
+    "dataOraUTC": "2016-10-22T20:33:55.250000",
+    "lat": 42.8227,
+    "long": 13.1825,
+    "profonditaKm": 9.2,
+    "magnitudo": 8,
+    "radius": 22000,
+    "risk": 0.2085,
+    "city": "Norcia"
+  },
+  {
+    "dataOraUTC": "2016-10-22T22:22:15.620000",
+    "lat": 42.7667,
+    "long": 13.1687,
+    "profonditaKm": 12.6,
+    "magnitudo": 2.6,
+    "radius": 26000,
+    "risk": 0.207,
+    "city": "Norcia"
+  },
+  {
+    "dataOraUTC": "2016-10-23T01:48:12.400000",
+    "lat": 42.5572,
+    "long": 13.2663,
+    "profonditaKm": 12.2,
+    "magnitudo": 2.5,
+    "radius": 25000,
+    "risk": 0.0907,
+    "city": "Strada Provinciale 2 del Lago di Campotosto"
+  },
+  {
+    "dataOraUTC": "2016-10-22T05:24:56.260000",
+    "lat": 42.7707,
+    "long": 13.1322,
+    "profonditaKm": 6,
+    "magnitudo": 2.9,
+    "radius": 29000,
+    "risk": 0.207,
+    "city": "Località Grotti"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:08:08.470000",
+    "lat": 43.0197,
+    "long": 13.0707,
+    "profonditaKm": 10,
+    "magnitudo": 2.7,
+    "radius": 27000,
+    "risk": 0.2083,
+    "city": "Provincia di Macerata"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:11:15.430000",
+    "lat": 42.8828,
+    "long": 13.1582,
+    "profonditaKm": 8,
+    "magnitudo": 2.3,
+    "radius": 23000,
+    "risk": 0.0845,
+    "city": "Castel Sant'Angelo Sul Nera"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:13:32.550000",
+    "lat": 43.0163,
+    "long": 13.1213,
+    "profonditaKm": 5.9,
+    "magnitudo": 2.7,
+    "radius": 27000,
+    "risk": 0.2083,
+    "city": "Visso"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:17:04.890000",
+    "lat": 43.0253,
+    "long": 13.152,
+    "profonditaKm": 9.4,
+    "magnitudo": 2.8,
+    "radius": 28000,
+    "risk": 0.0894,
+    "city": "Visso"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:17:26.510000",
+    "lat": 42.9423,
+    "long": 13.1523,
+    "profonditaKm": 9,
+    "magnitudo": 3,
+    "radius": 30000,
+    "risk": 0.2636,
+    "city": "Ussita"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:18:54.350000",
+    "lat": 42.9198,
+    "long": 13.0545,
+    "profonditaKm": 10.7,
+    "magnitudo": 2.2,
+    "radius": 22000,
+    "risk": 0.203,
+    "city": "Strada Statale"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:28:11.040000",
+    "lat": 42.9138,
+    "long": 13.0507,
+    "profonditaKm": 10.8,
+    "magnitudo": 2.1,
+    "radius": 21000,
+    "risk": 0.2007,
+    "city": "Visso"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:28:44.610000",
+    "lat": 42.9212,
+    "long": 13.0647,
+    "profonditaKm": 11,
+    "magnitudo": 2.1,
+    "radius": 21000,
+    "risk": 0.203,
+    "city": "Visso"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:28:11.030000",
+    "lat": 42.9162,
+    "long": 13.0517,
+    "profonditaKm": 10.6,
+    "magnitudo": 2.1,
+    "radius": 21000,
+    "risk": 0.203,
+    "city": "Visso"
+  },
+  {
+    "dataOraUTC": "2016-10-27T13:34:29.140000",
+    "lat": 43.0398,
+    "long": 13.0895,
+    "profonditaKm": 8.9,
+    "magnitudo": 2.3,
+    "radius": 23000,
+    "risk": 0.2582,
+    "city": "Strada Provinciale 99"
+  }
+]}
