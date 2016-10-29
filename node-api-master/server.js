@@ -2,6 +2,7 @@
 // =============================================================================
 
 // call the packages we need
+var async = require("async");
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -25,12 +26,12 @@ mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); /
 var Bear = require('./app/models/bear');
 
 var googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyAH2-qz_PV_V-95LgA60x9jQcO1aVg96GM'
+    key: 'AIzaSyDn-0OWOVsKyJ-dLqqWA9zBLikTLBV2m9M'
 });
-
-/*var googleMapsClient = require('@google/maps').createClient({
-    clientId: '1026154564975-0b177fniu9it1n8pc4j8fh8nc8ccj3c2.apps.googleusercontent.com',
-    clientSecret: '3m6l_5mp72JSYQXdvr1cdLaa',
+/*
+var googleMapsClient = require('@google/maps').createClient({
+    clientId: '517233656841-2vpqc8nvsnv6lcv6kdpjgt6q8lv7is7d.apps.googleusercontent.com',
+    clientSecret: 'hxXTgL1lyTssGWPpq1pp3PkQ',
 });*/
 
 app.all('/', function (req, res, next) {
@@ -62,17 +63,63 @@ router.get('/', function (req, res) {
 // ----------------------------------------------------
 router.get('/earthquake', function (req, res) {
 
+
+
+    function foo(quakeobj, fn) {
+        googleMapsClient.reverseGeocode({
+            latlng: [quakeobj.lat, quakeobj.long],
+            //result_type: ['country', 'locality'],
+            //location_type: ['ROOFTOP', 'APPROXIMATE']
+        }, function (err, response) {
+            if (!err) {
+                quakeobj.city = response.json.results[0].address_components[1].long_name;
+                console.log(response.json.results[0].address_components[1].long_name);
+                //  console.log(response.json.results[0].address_components);
+                fn(quakeobj);
+                //console.log(result);
+
+            }
+        });
+    }
+
     var quakeData = JSON.parse(fs.readFileSync('JSON_RealTime_earthquake.json', 'utf8'));
     var riskData = JSON.parse(fs.readFileSync('JSON_EarthquakeRiskMap.json', 'utf8'));
 
     var result = new Array();
-    console.log(quakeData.lenght);
-    for (var i = 0; i < quakeData.lenght; i++) {
-        var quakeobj = quakeData[i];
-        quakeobj.radius = quakeobj.magnitudo * 1000;
-        result.push(quakeobj);
+    var test = 0;
+    for (var i = 0; i < 3; i++) {
+        var quakeobj = quakeData.results[i];
+        quakeobj.radius = quakeobj.magnitudo * 10000
+            //risk
+        for (var k = 0; k < riskData.requests.length; k++) {
+            var riskobj = riskData.requests[k];
+            if (typeof riskobj != 'undefined') {
+                var num = Number(Math.round(quakeobj.lat + 'e2') + 'e-2');
+                var num2 = Number(Math.round(riskobj.Lat + 'e2') + 'e-2');
+                if (num == num2) {
+                    quakeobj.risk = riskobj.X84perc;
+                }
+
+            }
+        }
+
+        foo(quakeobj, function (obj) {
+            console.log(test);
+            console.log(obj); // this is where you get the return value
+            result.push(obj)
+            if(test==1){
+                res.json(result);
+            }else{
+                test++;
+            }
+        });
     }
 
+
+
+    console.log('ciao');
+    console.log(result);
+    
 
 
 
@@ -91,30 +138,18 @@ router.get('/earthquake', function (req, res) {
     // [{"dataOraUTC":"2016-1022T05:24:56.260000","lat":42.7707,"long":13.1322,"profonditaKm":6,"magnitudo":2.9,"provinciaZona":"Perugia"
 
 
-    /* googleMapsClient.reverseGeocode({
-          latlng: [obj.lat, obj.long],
-          result_type: ['country', 'locality'],
-          location_type: ['ROOFTOP', 'APPROXIMATE']
+
+    /*  googleMapsClient.geocode({
+          address: 'Sydney Opera House'
+
+
       }, function (err, response) {
           if (!err) {
-              result.push(response.json.results);
-              console.log(response.json.results);
+              //result.push(response.json.results);
+              console.log(response);
               //res.json(response.json.results);
           }
       });*/
-
-    /*
-            googleMapsClient.placesNearby({
-                location: [obj.lat, obj.long],
-
-
-            }, function (err, response) {
-                if (!err) {
-                    result.push(response.json.results);
-                    console.log(response.json.results);
-                    //res.json(response.json.results);
-                }
-            });*/
 
 
     // example.js
@@ -123,7 +158,6 @@ router.get('/earthquake', function (req, res) {
 
     //console.log(out);
 
-    res.json(result);
 
 });
 
