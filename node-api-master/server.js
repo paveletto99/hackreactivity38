@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
 var fs = require('fs');
-var R = require("r-script");
+//var R = require("r-script");
 
 // configure app
 app.use(morgan('dev')); // log requests to the console
@@ -28,7 +28,16 @@ var googleMapsClient = require('@google/maps').createClient({
     key: 'AIzaSyD3Vn8hUlBLyV_0lmHZUF2e6AiiVEIJnV4'
 });
 
+/*var googleMapsClient = require('@google/maps').createClient({
+    clientId: '1026154564975-0b177fniu9it1n8pc4j8fh8nc8ccj3c2.apps.googleusercontent.com',
+    clientSecret: '3m6l_5mp72JSYQXdvr1cdLaa',
+});*/
 
+app.all('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 // ROUTES FOR OUR API
 // =============================================================================
 
@@ -52,28 +61,34 @@ router.get('/', function (req, res) {
 // on routes that end in /bears
 // ----------------------------------------------------
 router.get('/earthquake', function (req, res) {
+
     var jsonData = JSON.parse(fs.readFileSync('JSON_RealTime_earthquake.json', 'utf8'));
 
-    for (var i = 0; i < jsonData.counters.length; i++) {
-        var counter = jsonData.counters[i];
-        console.log(counter.counter_name);
-    }
-    googleMapsClient.reverseGeocode({
-        latlng: [42.7707, 13.1322],
-    }, function (err, response) {
-        if (!err) {
+    var result;
 
-            //console.log(response.json.results);
-            //res.json(response.json.results);
-        }
-    });
-    // example.js
+    /*for (var i = 0; i < jsonData.length; i++) {
+        var obj = jsonData[i];
+        googleMapsClient.reverseGeocode({
+            latlng: [42.7707, 13.1322],
+        }, function (err, response) {
+            if (!err) {
+                result.push(response.json.results);
+                console.log(response.json.results);
+                //res.json(response.json.results);
+            }
+        });
+        */
 
-    //var out = R("GetDataFrom_INGV_erthquake_last_events.1.2.R").callSync();
 
-    //console.log(out);
+}
 
-    res.json(jsonData);
+// example.js
+
+//var out = R("GetDataFrom_INGV_erthquake_last_events.1.2.R").callSync();
+
+//console.log(out);
+
+res.json(result);
 
 });
 
@@ -186,17 +201,7 @@ router.route('/bears/:bear_id')
     });
 });
 
-/*
-app.configure(function () {
-    app.use(express.methodOverride());
-    app.use(express.bodyParser());
-    app.use(function (req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        next();
-    });
-    app.use(app.router);
-});*/
+
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);

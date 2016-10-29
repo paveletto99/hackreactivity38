@@ -1,0 +1,10 @@
+### install.packages("xlsx")
+library(xlsx)
+fileUrl <- "http://esse1.mi.ingv.it/data/ag_05percento.xls.zip"
+download.file(fileUrl,destfile="INGV_pericolositsismica_10_50yrs.zip")
+unzip(zipfile="INGV_pericolositsismica_10_50yrs.zip", exdir=".")
+DF_EarthquakeRiskMap_INGV_10_50_RAW <- read.xlsx("ag_05percento.xls", sheetIndex = 1)
+### View(DF_EarthquakeRiskMap_INGV_10_50_RAW)
+JSON_EarthquakeRiskMap_INGV_10_50 <- toJSON(unname(split(DF_EarthquakeRiskMap_INGV_10_50_RAW, 1:nrow(DF_EarthquakeRiskMap_INGV_10_50_RAW))))
+##cat(JSON_EarthquakeRiskMap_INGV_10_50)
+write(JSON_EarthquakeRiskMap_INGV_10_50, "JSON_EarthquakeRiskMap.json")
