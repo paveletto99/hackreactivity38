@@ -86,8 +86,8 @@ router.get('/earthquake', function (req, res) {
     var riskData = JSON.parse(fs.readFileSync('JSON_EarthquakeRiskMap.json', 'utf8'));
 
     var result = new Array();
-    var test = 0;
-    for (var i = 0; i < 3; i++) {
+    var test = 1;
+    for (var i = 0; i < 20; i++) {
         var quakeobj = quakeData.results[i];
         quakeobj.radius = quakeobj.magnitudo * 10000
             //risk
@@ -107,7 +107,7 @@ router.get('/earthquake', function (req, res) {
             console.log(test);
             console.log(obj); // this is where you get the return value
             result.push(obj)
-            if(test==1){
+            if(test==19){
                 res.json(result);
             }else{
                 test++;
@@ -115,14 +115,7 @@ router.get('/earthquake', function (req, res) {
         });
     }
 
-
-
-    console.log('ciao');
-    console.log(result);
     
-
-
-
     /*    googleMapsClient.reverseGeocode({
             latlng: [42.7707, 13.1322],
         }, function (err, response) {
@@ -164,30 +157,11 @@ router.get('/earthquake', function (req, res) {
 // on routes that end in /bears
 // ----------------------------------------------------
 router.get('/maps', function (req, res) {
-    googleMapsClient.reverseGeocode({
-            latlng: [42.7707, 13.1322],
-        },
-        /*
-            // Geocode an address. 
-            googleMapsClient.places({
-                //address: '1600 Amphitheatre Parkway, Mountain View, CA'
-                language: 'en',
-                location: [-33.865, 151.038],
-                radius: 5000,
-                minprice: 1,
-                maxprice: 4,
-                opennow: true,
-                type: 'city'
-
-            }*/
-
-        function (err, response) {
-            if (!err) {
-                //console.log(response.json.results);
-                res.json(response.json.results);
-            }
-        });
-
+  /*  var twitterData = JSON.parse(fs.readFileSync('JSON_Twitter_hastagSearch_RAW.json', 'utf8'));
+    for (var i = 0; i < twitterData.results.lenght i++) {
+        var twitobj = twitterData.results[i];
+        
+    }*/
 });
 
 
