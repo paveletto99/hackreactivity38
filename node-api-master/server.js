@@ -25,7 +25,7 @@ mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); /
 var Bear = require('./app/models/bear');
 
 var googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyD3Vn8hUlBLyV_0lmHZUF2e6AiiVEIJnV4'
+    key: 'AIzaSyAH2-qz_PV_V-95LgA60x9jQcO1aVg96GM'
 });
 
 /*var googleMapsClient = require('@google/maps').createClient({
@@ -62,13 +62,21 @@ router.get('/', function (req, res) {
 // ----------------------------------------------------
 router.get('/earthquake', function (req, res) {
 
-    var jsonData = JSON.parse(fs.readFileSync('JSON_RealTime_earthquake.json', 'utf8'));
+    var quakeData = JSON.parse(fs.readFileSync('JSON_RealTime_earthquake.json', 'utf8'));
+    var riskData = JSON.parse(fs.readFileSync('JSON_EarthquakeRiskMap.json', 'utf8'));
 
-    var result;
+    var result = new Array();
+    console.log(quakeData.lenght);
+    for (var i = 0; i < quakeData.lenght; i++) {
+        var quakeobj = quakeData[i];
+        quakeobj.radius = quakeobj.magnitudo * 1000;
+        result.push(quakeobj);
+    }
 
-    /*for (var i = 0; i < jsonData.length; i++) {
-        var obj = jsonData[i];
-        googleMapsClient.reverseGeocode({
+
+
+
+    /*    googleMapsClient.reverseGeocode({
             latlng: [42.7707, 13.1322],
         }, function (err, response) {
             if (!err) {
@@ -76,19 +84,46 @@ router.get('/earthquake', function (req, res) {
                 console.log(response.json.results);
                 //res.json(response.json.results);
             }
-        });
-        */
+        });*/
+
+    //{"ID":56709,"Lon":12.759,"Lat":35.5323,"ag":0,"X84perc":0,"X16perc":0},
+
+    // [{"dataOraUTC":"2016-1022T05:24:56.260000","lat":42.7707,"long":13.1322,"profonditaKm":6,"magnitudo":2.9,"provinciaZona":"Perugia"
 
 
-}
+    /* googleMapsClient.reverseGeocode({
+          latlng: [obj.lat, obj.long],
+          result_type: ['country', 'locality'],
+          location_type: ['ROOFTOP', 'APPROXIMATE']
+      }, function (err, response) {
+          if (!err) {
+              result.push(response.json.results);
+              console.log(response.json.results);
+              //res.json(response.json.results);
+          }
+      });*/
 
-// example.js
+    /*
+            googleMapsClient.placesNearby({
+                location: [obj.lat, obj.long],
 
-//var out = R("GetDataFrom_INGV_erthquake_last_events.1.2.R").callSync();
 
-//console.log(out);
+            }, function (err, response) {
+                if (!err) {
+                    result.push(response.json.results);
+                    console.log(response.json.results);
+                    //res.json(response.json.results);
+                }
+            });*/
 
-res.json(result);
+
+    // example.js
+
+    //var out = R("GetDataFrom_INGV_erthquake_last_events.1.2.R").callSync();
+
+    //console.log(out);
+
+    res.json(result);
 
 });
 
